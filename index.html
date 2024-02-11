@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f7d7e1; /* Valentine-themed background color */
+    background-image: radial-gradient(white, #f7d7e1); /* Background gradient */
+  }
+  .popup-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    padding: 20px;
+    text-align: center;
+    max-width: 80%;
+    position: relative; /* Added relative positioning */
+  }
+  button {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+    width: 100px; /* Fixed width for buttons */
+  }
+  button:hover {
+    background-color: #e60000;
+  }
+
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .popup-container {
+      max-width: 90%;
+    }
+    button {
+      width: 80px; /* Adjust button width for smaller screens */
+      font-size: 0.9rem; /* Decrease font size for smaller screens */
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="popup-container" id="popup">
+  <h2>Will You Be My Valentine?</h2>
+  <button onclick="showResponse(true)">Yes</button>
+  <button id="noButton" onclick="moveNoButton()">No</button>
+</div>
+
+<script>
+function showResponse(response) {
+  if (response === true) {
+    window.location.href = "nextpage.html"
+  } else {
+    var noButton = document.getElementById("noButton");
+    noButton.disabled = true;
+    moveNoButton();
+  }
+}
+
+function moveNoButton() {
+  var noButton = document.getElementById("noButton");
+  var popupContainer = document.getElementById("popup");
+  var containerWidth = popupContainer.offsetWidth;
+  var containerHeight = popupContainer.offsetHeight;
+  var buttonWidth = noButton.offsetWidth;
+  var buttonHeight = noButton.offsetHeight;
+
+  // Generate random positions for the button
+  var newXPosition = Math.floor(Math.random() * (containerWidth - buttonWidth));
+  var newYPosition = Math.floor(Math.random() * (containerHeight - buttonHeight));
+
+  // Set the new position
+  noButton.style.position = "absolute";
+  noButton.style.left = newXPosition + "px";
+  noButton.style.top = newYPosition + "px";
+}
+</script>
+
+</body>
+</html>
